@@ -1,8 +1,17 @@
 /* ============================================================
    Howdy.com Event Hub — Blackthorn Custom CSS
-   Target: Event Group listing page (Aspen view)
+   Target: Event Group listing page (Aspen view) ONLY
    Brand reference: https://www.howdy.com/
-   Goal: convert thumbnail grid → clean text list with pill CTA
+
+   IMPORTANT: This CSS loads on every page under the Event Group
+   (listing + every event detail page). All layout/destructive
+   rules are scoped to `bt-event-listing-aspen-main` (the custom
+   element that wraps the Aspen listing) so they do NOT affect
+   the event detail pages.
+
+   Truly global rules (typography, brand colors, hiding the
+   language selector, removing Material focus rings) intentionally
+   stay global so the brand feel is consistent everywhere.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -25,38 +34,28 @@
   --howdy-row-gap: 1rem;
 }
 
-/* ---------- Base typography ---------- */
-body,
-.content-container,
-.main-container,
-.appbar,
-.sidebar,
-.grid-item,
-.event-name,
-.event-details,
-button,
-input {
+/* ============================================================
+   GLOBAL — safe to apply everywhere (listing + event detail)
+   ============================================================ */
+
+/* Base typography — site-wide consistent brand */
+body {
   font-family: var(--howdy-font) !important;
+  background: var(--howdy-bg) !important;
   color: var(--howdy-fg);
   letter-spacing: -0.01em;
 }
 
-body {
-  background: var(--howdy-bg) !important;
-}
-
-/* ---------- Header (appbar) ---------- */
+/* Header (appbar) — same on listing and detail */
 header.appbar {
   background: var(--howdy-bg) !important;
   border-bottom: 1px solid var(--howdy-border);
   box-shadow: none !important;
 }
-
 .appbar .container {
   max-width: 1320px;
   margin: 0 auto;
 }
-
 .group-name h1 {
   font-family: var(--howdy-font) !important;
   font-weight: 700 !important;
@@ -65,7 +64,7 @@ header.appbar {
   color: var(--howdy-fg) !important;
 }
 
-/* Search input — pill (keep Blackthorn's absolute-positioned icons, just re-center them) */
+/* Search bar — appbar element, both pages */
 bt-search-autocomplete,
 bt-search-autocomplete > form.search {
   flex: 1 1 auto !important;
@@ -97,7 +96,6 @@ bt-search-autocomplete > form.search {
   padding: 0 44px !important;
   box-sizing: border-box !important;
 }
-/* Search magnifying glass — pinned left, vertically centered */
 .search-wrapper .search-icon {
   position: absolute !important;
   left: 12px !important;
@@ -106,7 +104,6 @@ bt-search-autocomplete > form.search {
   color: var(--howdy-muted) !important;
   pointer-events: none;
 }
-/* Clear (X) button — pinned right, vertically centered */
 .search-wrapper .clear-icon {
   position: absolute !important;
   right: 6px !important;
@@ -114,7 +111,7 @@ bt-search-autocomplete > form.search {
   transform: translateY(-50%) !important;
 }
 
-/* Restore Material Icons font on icon elements (our global button font-family override broke ligatures) */
+/* Restore Material Icons font on icon elements (button font override breaks ligatures otherwise) */
 .material-icons,
 .material-icons *,
 i.material-icons,
@@ -130,7 +127,6 @@ button.material-icons * {
   font-variant-ligatures: discretionary-ligatures !important;
 }
 
-/* Clear/cancel button inside the search field */
 button.clear-icon {
   color: var(--howdy-muted) !important;
   background: transparent !important;
@@ -157,14 +153,14 @@ button.clear-icon .material-icons {
   line-height: 1 !important;
 }
 
-/* Language selector — hidden */
+/* Language selector — hidden everywhere */
 bt-language-selector,
 .language-selector,
 .language-selector-button {
   display: none !important;
 }
 
-/* ---------- Kill Material Design purple focus/ripple overlays ---------- */
+/* Kill Material purple focus/ripple overlays everywhere */
 .mat-focus-indicator::before,
 .mat-button-focus-overlay,
 .mat-ripple,
@@ -174,7 +170,6 @@ bt-language-selector,
   background: transparent !important;
   opacity: 0 !important;
 }
-
 *:focus,
 *:focus-visible,
 button:focus,
@@ -185,32 +180,42 @@ a:focus-visible {
   box-shadow: none !important;
 }
 
-/* Strip any Material left-bar / underline active indicator on filters */
-.category-item,
-.category-item.selected,
-.category-item-button,
-.category-item-button.selected {
-  border-left: 0 !important;
-  border-right: 0 !important;
-  box-shadow: none !important;
+/* ============================================================
+   LISTING-PAGE-ONLY — everything below is scoped to the
+   Aspen group listing wrapper, so it does NOT leak to event
+   detail pages.
+   ============================================================ */
+
+/* Page chrome */
+bt-event-listing-aspen-main .content-container,
+bt-event-listing-aspen-main .listing-container {
+  background: var(--howdy-bg) !important;
 }
-.category-item::before,
-.category-item::after,
-.category-item-button::before,
-.category-item-button::after {
-  display: none !important;
-  background: transparent !important;
-  border: 0 !important;
+bt-event-listing-aspen-main .main#main {
+  padding: 1.5rem clamp(1rem, 4vw, 2.5rem) !important;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* ---------- Sidebar (filters) ---------- */
-aside.sidebar {
+/* "Upcoming events" section title */
+bt-event-listing-aspen-main .main#main > h2,
+bt-event-listing-aspen-main .main#main > .group-name,
+bt-event-listing-aspen-main .grid-title {
+  font-family: var(--howdy-font) !important;
+  font-weight: 700 !important;
+  font-size: 1.75rem !important;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem 0 !important;
+  color: var(--howdy-fg) !important;
+}
+
+/* Sidebar (filters) */
+bt-event-listing-aspen-main aside.sidebar {
   background: var(--howdy-bg) !important;
   border-right: 1px solid var(--howdy-border);
   padding-top: 1.25rem !important;
 }
-
-.category-title {
+bt-event-listing-aspen-main .category-title {
   font-family: var(--howdy-font) !important;
   font-size: .75rem !important;
   font-weight: 600 !important;
@@ -219,8 +224,7 @@ aside.sidebar {
   color: var(--howdy-subtle) !important;
   margin-bottom: .5rem !important;
 }
-
-.category-item-button {
+bt-event-listing-aspen-main .category-item-button {
   font-family: var(--howdy-font) !important;
   font-size: .95rem !important;
   font-weight: 500 !important;
@@ -230,47 +234,33 @@ aside.sidebar {
   background: transparent !important;
   transition: background .15s ease, color .15s ease;
 }
-.category-item-button:hover {
+bt-event-listing-aspen-main .category-item-button:hover {
   background: var(--howdy-surface) !important;
   color: var(--howdy-fg) !important;
 }
-.category-item.selected .category-item-button,
-.category-item-button.selected {
+bt-event-listing-aspen-main .category-item.selected .category-item-button,
+bt-event-listing-aspen-main .category-item-button.selected {
   background: var(--howdy-fg) !important;
   color: var(--howdy-accent-fg) !important;
 }
-
-/* ---------- Main content container ---------- */
-.content-container,
-.listing-container {
-  background: var(--howdy-bg) !important;
+bt-event-listing-aspen-main .category-item,
+bt-event-listing-aspen-main .category-item.selected {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
+}
+bt-event-listing-aspen-main .category-item::before,
+bt-event-listing-aspen-main .category-item::after,
+bt-event-listing-aspen-main .category-item-button::before,
+bt-event-listing-aspen-main .category-item-button::after {
+  display: none !important;
+  background: transparent !important;
+  border: 0 !important;
 }
 
-.main#main {
-  padding: 1.5rem clamp(1rem, 4vw, 2.5rem) !important;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* "Upcoming events" section title (if rendered) */
-.main#main > h2,
-.main#main > .group-name,
-.grid-title {
-  font-family: var(--howdy-font) !important;
-  font-weight: 700 !important;
-  font-size: 1.75rem !important;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.25rem 0 !important;
-  color: var(--howdy-fg) !important;
-}
-
-/* ============================================================
-   GRID → LIST CONVERSION
-   ============================================================ */
-
-/* Kill the multi-column grid layout entirely */
-.grid-container,
-.grid-renderer {
+/* Grid → vertical list */
+bt-event-listing-aspen-main .grid-container,
+bt-event-listing-aspen-main .grid-renderer {
   display: flex !important;
   flex-direction: column !important;
   gap: var(--howdy-row-gap) !important;
@@ -280,7 +270,7 @@ aside.sidebar {
 }
 
 /* Each event becomes a horizontal row */
-a.grid-item {
+bt-event-listing-aspen-main a.grid-item {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -299,23 +289,22 @@ a.grid-item {
   position: relative;
   overflow: hidden;
 }
-
-a.grid-item:hover {
+bt-event-listing-aspen-main a.grid-item:hover {
   border-color: var(--howdy-fg) !important;
   box-shadow: var(--howdy-shadow-card) !important;
   transform: none !important;
 }
 
-/* Hide the banner thumbnail entirely */
-.event-image-wrapper,
-.event-image-container,
-bt-responsive-img,
-.grid-item img.ImgResponsive {
+/* Hide the banner thumbnail on listing rows ONLY (event detail keeps its hero banner) */
+bt-event-listing-aspen-main .event-image-wrapper,
+bt-event-listing-aspen-main .event-image-container,
+bt-event-listing-aspen-main bt-responsive-img,
+bt-event-listing-aspen-main .grid-item img.ImgResponsive {
   display: none !important;
 }
 
-/* Event text block */
-.event-details {
+/* Event text block — listing rows only */
+bt-event-listing-aspen-main .event-details {
   display: flex !important;
   flex-direction: column !important;
   gap: .35rem !important;
@@ -323,8 +312,7 @@ bt-responsive-img,
   flex: 1 1 auto;
   min-width: 0;
 }
-
-.event-name {
+bt-event-listing-aspen-main .event-name {
   font-family: var(--howdy-font) !important;
   font-weight: 600 !important;
   font-size: 1.125rem !important;
@@ -334,14 +322,12 @@ bt-responsive-img,
   margin: 0 !important;
   order: 2;
 }
-
-/* Date row above the title */
-.event-start-date {
+bt-event-listing-aspen-main .event-start-date {
   order: 1;
   margin: 0 !important;
 }
-.event-start-date .start-date,
-.event-start-date span {
+bt-event-listing-aspen-main .event-start-date .start-date,
+bt-event-listing-aspen-main .event-start-date span {
   font-family: var(--howdy-font) !important;
   font-size: .8125rem !important;
   font-weight: 500 !important;
@@ -349,24 +335,20 @@ bt-responsive-img,
   letter-spacing: .01em;
   text-transform: uppercase;
 }
-
-/* Venue / when-and-where row */
-.event-when-and-where {
+bt-event-listing-aspen-main .event-when-and-where {
   order: 3;
   margin: 0 !important;
   font-family: var(--howdy-font) !important;
   font-size: .875rem !important;
   color: var(--howdy-subtle) !important;
 }
-.event__dateTime,
-.event__venue {
+bt-event-listing-aspen-main .event__dateTime,
+bt-event-listing-aspen-main .event__venue {
   font-family: var(--howdy-font) !important;
   font-size: .875rem !important;
   color: var(--howdy-subtle) !important;
 }
-
-/* Price tag — move out of image, sit inline near CTA */
-.event-price {
+bt-event-listing-aspen-main .event-price {
   position: static !important;
   display: inline-flex !important;
   align-items: center;
@@ -382,8 +364,8 @@ bt-responsive-img,
   order: 4;
 }
 
-/* ---------- Register CTA (inject via ::after on the row link) ----- */
-a.grid-item::after {
+/* Register CTA injected on each listing row */
+bt-event-listing-aspen-main a.grid-item::after {
   content: 'Register';
   display: inline-flex;
   align-items: center;
@@ -402,16 +384,14 @@ a.grid-item::after {
   white-space: nowrap;
   transition: background .15s ease, color .15s ease;
 }
-
-a.grid-item:hover::after {
+bt-event-listing-aspen-main a.grid-item:hover::after {
   background: var(--howdy-bg);
   color: var(--howdy-fg);
 }
 
-/* ---------- "Load more" + footer button polish ---------- */
-.more-content-loader button,
-.more-content-loader .mat-button,
-button.mat-button {
+/* "Load more" button at the bottom of the listing */
+bt-event-listing-aspen-main .more-content-loader button,
+bt-event-listing-aspen-main .more-content-loader .mat-button {
   font-family: var(--howdy-font) !important;
   font-weight: 500 !important;
   border-radius: var(--howdy-radius-pill) !important;
@@ -421,29 +401,29 @@ button.mat-button {
   padding: .6rem 1.5rem !important;
   text-transform: none !important;
 }
-.more-content-loader button:hover {
+bt-event-listing-aspen-main .more-content-loader button:hover {
   background: var(--howdy-fg) !important;
   color: var(--howdy-accent-fg) !important;
 }
 
-/* ---------- Responsive: stack on small screens ---------- */
+/* Mobile: stack listing rows */
 @media (max-width: 640px) {
-  a.grid-item {
+  bt-event-listing-aspen-main a.grid-item {
     flex-direction: column !important;
     align-items: stretch !important;
     padding: 1rem 1.1rem !important;
   }
-  a.grid-item::after {
+  bt-event-listing-aspen-main a.grid-item::after {
     box-sizing: border-box !important;
     margin-left: 0 !important;
     margin-top: .75rem !important;
     width: 100% !important;
     padding: .7rem 1rem !important;
   }
-  .event-price {
+  bt-event-listing-aspen-main .event-price {
     margin-right: 0;
   }
-  /* Make sure header + search bar fit within the viewport */
+  /* Header sizing on mobile is global, safe for both pages */
   .appbar .container {
     max-width: 100% !important;
     padding: 0 .75rem !important;
