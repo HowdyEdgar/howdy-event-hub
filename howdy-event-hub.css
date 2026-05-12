@@ -1,0 +1,457 @@
+/* ============================================================
+   Howdy.com Event Hub — Blackthorn Custom CSS
+   Target: Event Group listing page (Aspen view)
+   Brand reference: https://www.howdy.com/
+   Goal: convert thumbnail grid → clean text list with pill CTA
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --howdy-bg: #ffffff;
+  --howdy-fg: #000000;
+  --howdy-muted: #404040;
+  --howdy-subtle: #737373;
+  --howdy-border: #e5e5e5;
+  --howdy-border-strong: #000000;
+  --howdy-surface: #fafafa;
+  --howdy-accent: #000000;
+  --howdy-accent-fg: #ffffff;
+  --howdy-radius-sm: .25rem;
+  --howdy-radius-md: .5rem;
+  --howdy-radius-pill: 9999px;
+  --howdy-shadow-card: 0 2px 8px #0000000f;
+  --howdy-font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --howdy-row-gap: 1rem;
+}
+
+/* ---------- Base typography ---------- */
+body,
+.content-container,
+.main-container,
+.appbar,
+.sidebar,
+.grid-item,
+.event-name,
+.event-details,
+button,
+input {
+  font-family: var(--howdy-font) !important;
+  color: var(--howdy-fg);
+  letter-spacing: -0.01em;
+}
+
+body {
+  background: var(--howdy-bg) !important;
+}
+
+/* ---------- Header (appbar) ---------- */
+header.appbar {
+  background: var(--howdy-bg) !important;
+  border-bottom: 1px solid var(--howdy-border);
+  box-shadow: none !important;
+}
+
+.appbar .container {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.group-name h1 {
+  font-family: var(--howdy-font) !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: -0.02em;
+  color: var(--howdy-fg) !important;
+}
+
+/* Search input — pill (keep Blackthorn's absolute-positioned icons, just re-center them) */
+bt-search-autocomplete,
+bt-search-autocomplete > form.search {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  display: block !important;
+}
+.search-wrapper {
+  position: relative !important;
+  border: 1px solid var(--howdy-border) !important;
+  border-radius: var(--howdy-radius-pill) !important;
+  background: var(--howdy-bg) !important;
+  height: 40px !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: border-color .15s ease;
+}
+.search-wrapper:focus-within {
+  border-color: var(--howdy-fg) !important;
+}
+.search-field {
+  font-family: var(--howdy-font) !important;
+  font-size: .95rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 44px !important;
+  box-sizing: border-box !important;
+}
+/* Search magnifying glass — pinned left, vertically centered */
+.search-wrapper .search-icon {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--howdy-muted) !important;
+  pointer-events: none;
+}
+/* Clear (X) button — pinned right, vertically centered */
+.search-wrapper .clear-icon {
+  position: absolute !important;
+  right: 6px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Restore Material Icons font on icon elements (our global button font-family override broke ligatures) */
+.material-icons,
+.material-icons *,
+i.material-icons,
+button.material-icons,
+button.material-icons * {
+  font-family: 'Material Icons', 'Material Icons Outlined' !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-feature-settings: 'liga' !important;
+  -webkit-font-feature-settings: 'liga' !important;
+  font-variant-ligatures: discretionary-ligatures !important;
+}
+
+/* Clear/cancel button inside the search field */
+button.clear-icon {
+  color: var(--howdy-muted) !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+  border-radius: var(--howdy-radius-pill) !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  transition: background .15s ease, color .15s ease;
+}
+button.clear-icon:hover {
+  background: var(--howdy-surface) !important;
+  color: var(--howdy-fg) !important;
+}
+button.clear-icon span,
+button.clear-icon .material-icons {
+  font-size: 20px !important;
+  line-height: 1 !important;
+}
+
+/* Language selector — hidden */
+bt-language-selector,
+.language-selector,
+.language-selector-button {
+  display: none !important;
+}
+
+/* ---------- Kill Material Design purple focus/ripple overlays ---------- */
+.mat-focus-indicator::before,
+.mat-button-focus-overlay,
+.mat-ripple,
+.mat-button-ripple,
+.cdk-focus-trap-anchor {
+  display: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+*:focus,
+*:focus-visible,
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Strip any Material left-bar / underline active indicator on filters */
+.category-item,
+.category-item.selected,
+.category-item-button,
+.category-item-button.selected {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
+}
+.category-item::before,
+.category-item::after,
+.category-item-button::before,
+.category-item-button::after {
+  display: none !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* ---------- Sidebar (filters) ---------- */
+aside.sidebar {
+  background: var(--howdy-bg) !important;
+  border-right: 1px solid var(--howdy-border);
+  padding-top: 1.25rem !important;
+}
+
+.category-title {
+  font-family: var(--howdy-font) !important;
+  font-size: .75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--howdy-subtle) !important;
+  margin-bottom: .5rem !important;
+}
+
+.category-item-button {
+  font-family: var(--howdy-font) !important;
+  font-size: .95rem !important;
+  font-weight: 500 !important;
+  color: var(--howdy-muted) !important;
+  border-radius: var(--howdy-radius-pill) !important;
+  padding: .35rem .85rem !important;
+  background: transparent !important;
+  transition: background .15s ease, color .15s ease;
+}
+.category-item-button:hover {
+  background: var(--howdy-surface) !important;
+  color: var(--howdy-fg) !important;
+}
+.category-item.selected .category-item-button,
+.category-item-button.selected {
+  background: var(--howdy-fg) !important;
+  color: var(--howdy-accent-fg) !important;
+}
+
+/* ---------- Main content container ---------- */
+.content-container,
+.listing-container {
+  background: var(--howdy-bg) !important;
+}
+
+.main#main {
+  padding: 1.5rem clamp(1rem, 4vw, 2.5rem) !important;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* "Upcoming events" section title (if rendered) */
+.main#main > h2,
+.main#main > .group-name,
+.grid-title {
+  font-family: var(--howdy-font) !important;
+  font-weight: 700 !important;
+  font-size: 1.75rem !important;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem 0 !important;
+  color: var(--howdy-fg) !important;
+}
+
+/* ============================================================
+   GRID → LIST CONVERSION
+   ============================================================ */
+
+/* Kill the multi-column grid layout entirely */
+.grid-container,
+.grid-renderer {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--howdy-row-gap) !important;
+  width: 100% !important;
+  max-width: none !important;
+  grid-template-columns: none !important;
+}
+
+/* Each event becomes a horizontal row */
+a.grid-item {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 88px;
+  padding: 1.25rem 1.5rem !important;
+  margin: 0 !important;
+  background: var(--howdy-bg) !important;
+  border: 1px solid var(--howdy-border) !important;
+  border-radius: var(--howdy-radius-md) !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+a.grid-item:hover {
+  border-color: var(--howdy-fg) !important;
+  box-shadow: var(--howdy-shadow-card) !important;
+  transform: none !important;
+}
+
+/* Hide the banner thumbnail entirely */
+.event-image-wrapper,
+.event-image-container,
+bt-responsive-img,
+.grid-item img.ImgResponsive {
+  display: none !important;
+}
+
+/* Event text block */
+.event-details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: .35rem !important;
+  padding: 0 !important;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.event-name {
+  font-family: var(--howdy-font) !important;
+  font-weight: 600 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.015em !important;
+  color: var(--howdy-fg) !important;
+  margin: 0 !important;
+  order: 2;
+}
+
+/* Date row above the title */
+.event-start-date {
+  order: 1;
+  margin: 0 !important;
+}
+.event-start-date .start-date,
+.event-start-date span {
+  font-family: var(--howdy-font) !important;
+  font-size: .8125rem !important;
+  font-weight: 500 !important;
+  color: var(--howdy-muted) !important;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+/* Venue / when-and-where row */
+.event-when-and-where {
+  order: 3;
+  margin: 0 !important;
+  font-family: var(--howdy-font) !important;
+  font-size: .875rem !important;
+  color: var(--howdy-subtle) !important;
+}
+.event__dateTime,
+.event__venue {
+  font-family: var(--howdy-font) !important;
+  font-size: .875rem !important;
+  color: var(--howdy-subtle) !important;
+}
+
+/* Price tag — move out of image, sit inline near CTA */
+.event-price {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center;
+  background: transparent !important;
+  color: var(--howdy-fg) !important;
+  font-family: var(--howdy-font) !important;
+  font-weight: 600 !important;
+  font-size: .8125rem !important;
+  padding: 0 !important;
+  margin-right: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  order: 4;
+}
+
+/* ---------- Register CTA (inject via ::after on the row link) ----- */
+a.grid-item::after {
+  content: 'Register';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 1.5rem;
+  padding: .6rem 1.25rem;
+  background: var(--howdy-accent);
+  color: var(--howdy-accent-fg);
+  font-family: var(--howdy-font);
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  border: 1px solid var(--howdy-accent);
+  border-radius: var(--howdy-radius-pill);
+  white-space: nowrap;
+  transition: background .15s ease, color .15s ease;
+}
+
+a.grid-item:hover::after {
+  background: var(--howdy-bg);
+  color: var(--howdy-fg);
+}
+
+/* ---------- "Load more" + footer button polish ---------- */
+.more-content-loader button,
+.more-content-loader .mat-button,
+button.mat-button {
+  font-family: var(--howdy-font) !important;
+  font-weight: 500 !important;
+  border-radius: var(--howdy-radius-pill) !important;
+  border: 1px solid var(--howdy-fg) !important;
+  background: transparent !important;
+  color: var(--howdy-fg) !important;
+  padding: .6rem 1.5rem !important;
+  text-transform: none !important;
+}
+.more-content-loader button:hover {
+  background: var(--howdy-fg) !important;
+  color: var(--howdy-accent-fg) !important;
+}
+
+/* ---------- Responsive: stack on small screens ---------- */
+@media (max-width: 640px) {
+  a.grid-item {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 1rem 1.1rem !important;
+  }
+  a.grid-item::after {
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-top: .75rem !important;
+    width: 100% !important;
+    padding: .7rem 1rem !important;
+  }
+  .event-price {
+    margin-right: 0;
+  }
+  /* Make sure header + search bar fit within the viewport */
+  .appbar .container {
+    max-width: 100% !important;
+    padding: 0 .75rem !important;
+    box-sizing: border-box !important;
+  }
+  .search-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}

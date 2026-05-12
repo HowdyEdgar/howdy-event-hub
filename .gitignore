@@ -1,0 +1,7 @@
+# Working artifacts — not for the repo
+*.png
+*.b64
+bookmarklet.txt
+serve.py
+preview.html
+.playwright-mcp/
