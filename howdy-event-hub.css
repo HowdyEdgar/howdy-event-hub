@@ -47,13 +47,28 @@ body:has(bt-event-listing-aspen-main) header.appbar {
 body:has(bt-event-listing-aspen-main) .appbar .container {
   max-width: 1320px;
   margin: 0 auto;
+  gap: 1.25rem !important;
 }
-body:has(bt-event-listing-aspen-main) .group-name h1 {
+body:has(bt-event-listing-aspen-main) .group-name {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+body:has(bt-event-listing-aspen-main) .group-name h1,
+body:has(bt-event-listing-aspen-main) .group-name a,
+body:has(bt-event-listing-aspen-main) .group-name span {
   font-family: var(--howdy-font) !important;
   font-weight: 700 !important;
   font-size: 1.5rem !important;
+  line-height: 1.2 !important;
   letter-spacing: -0.02em;
   color: var(--howdy-fg) !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  max-width: none !important;
+  word-break: break-word;
 }
 
 /* ============================================================
