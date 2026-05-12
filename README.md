@@ -7,7 +7,7 @@ Custom stylesheet that converts the Blackthorn Aspen event group listing into a 
 Paste this into the **Custom CSS Url** field on the Event Group record in Salesforce:
 
 ```
-https://cdn.jsdelivr.net/gh/HowdyEdgar/howdy-event-hub@main/howdy-event-hub.css
+https://cdn.jsdelivr.net/gh/HowdyEdgar/howdy-event-hub/howdy-event-hub.css
 ```
 
 jsDelivr serves the file with `Content-Type: text/css` and caches at the CDN edge. Edits pushed to `main` propagate in ~10 seconds. If a change doesn't show up, append `?v=2` (or any number) to bust the cache.
