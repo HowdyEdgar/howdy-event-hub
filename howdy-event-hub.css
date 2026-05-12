@@ -3,15 +3,9 @@
    Target: Event Group listing page (Aspen view) ONLY
    Brand reference: https://www.howdy.com/
 
-   IMPORTANT: This CSS loads on every page under the Event Group
-   (listing + every event detail page). All layout/destructive
-   rules are scoped to `bt-event-listing-aspen-main` (the custom
-   element that wraps the Aspen listing) so they do NOT affect
-   the event detail pages.
-
-   Truly global rules (typography, brand colors, hiding the
-   language selector, removing Material focus rings) intentionally
-   stay global so the brand feel is consistent everywhere.
+   Every rule below is scoped to `body:has(bt-event-listing-aspen-main)`
+   so the stylesheet only applies on the group listing page. Event
+   detail pages render with Blackthorn's default template, untouched.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -22,11 +16,9 @@
   --howdy-muted: #404040;
   --howdy-subtle: #737373;
   --howdy-border: #e5e5e5;
-  --howdy-border-strong: #000000;
   --howdy-surface: #fafafa;
   --howdy-accent: #000000;
   --howdy-accent-fg: #ffffff;
-  --howdy-radius-sm: .25rem;
   --howdy-radius-md: .5rem;
   --howdy-radius-pill: 9999px;
   --howdy-shadow-card: 0 2px 8px #0000000f;
@@ -35,28 +27,28 @@
 }
 
 /* ============================================================
-   GLOBAL — safe to apply everywhere (listing + event detail)
+   Base typography + body background (listing page only)
    ============================================================ */
-
-/* Base typography — site-wide consistent brand */
-body {
+body:has(bt-event-listing-aspen-main) {
   font-family: var(--howdy-font) !important;
   background: var(--howdy-bg) !important;
   color: var(--howdy-fg);
   letter-spacing: -0.01em;
 }
 
-/* Header (appbar) — same on listing and detail */
-header.appbar {
+/* ============================================================
+   Header (appbar) — listing only
+   ============================================================ */
+body:has(bt-event-listing-aspen-main) header.appbar {
   background: var(--howdy-bg) !important;
   border-bottom: 1px solid var(--howdy-border);
   box-shadow: none !important;
 }
-.appbar .container {
+body:has(bt-event-listing-aspen-main) .appbar .container {
   max-width: 1320px;
   margin: 0 auto;
 }
-.group-name h1 {
+body:has(bt-event-listing-aspen-main) .group-name h1 {
   font-family: var(--howdy-font) !important;
   font-weight: 700 !important;
   font-size: 1.5rem !important;
@@ -64,15 +56,17 @@ header.appbar {
   color: var(--howdy-fg) !important;
 }
 
-/* Search bar — appbar element, both pages */
-bt-search-autocomplete,
-bt-search-autocomplete > form.search {
+/* ============================================================
+   Search bar pill — listing only
+   ============================================================ */
+body:has(bt-event-listing-aspen-main) bt-search-autocomplete,
+body:has(bt-event-listing-aspen-main) bt-search-autocomplete > form.search {
   flex: 1 1 auto !important;
   width: 100% !important;
   min-width: 0 !important;
   display: block !important;
 }
-.search-wrapper {
+body:has(bt-event-listing-aspen-main) .search-wrapper {
   position: relative !important;
   border: 1px solid var(--howdy-border) !important;
   border-radius: var(--howdy-radius-pill) !important;
@@ -83,10 +77,10 @@ bt-search-autocomplete > form.search {
   box-sizing: border-box !important;
   transition: border-color .15s ease;
 }
-.search-wrapper:focus-within {
+body:has(bt-event-listing-aspen-main) .search-wrapper:focus-within {
   border-color: var(--howdy-fg) !important;
 }
-.search-field {
+body:has(bt-event-listing-aspen-main) .search-field {
   font-family: var(--howdy-font) !important;
   font-size: .95rem !important;
   background: transparent !important;
@@ -96,7 +90,7 @@ bt-search-autocomplete > form.search {
   padding: 0 44px !important;
   box-sizing: border-box !important;
 }
-.search-wrapper .search-icon {
+body:has(bt-event-listing-aspen-main) .search-wrapper .search-icon {
   position: absolute !important;
   left: 12px !important;
   top: 50% !important;
@@ -104,19 +98,19 @@ bt-search-autocomplete > form.search {
   color: var(--howdy-muted) !important;
   pointer-events: none;
 }
-.search-wrapper .clear-icon {
+body:has(bt-event-listing-aspen-main) .search-wrapper .clear-icon {
   position: absolute !important;
   right: 6px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
 }
 
-/* Restore Material Icons font on icon elements (button font override breaks ligatures otherwise) */
-.material-icons,
-.material-icons *,
-i.material-icons,
-button.material-icons,
-button.material-icons * {
+/* Material Icons font restore (only needed because we override `button` font-family on listing) */
+body:has(bt-event-listing-aspen-main) .material-icons,
+body:has(bt-event-listing-aspen-main) .material-icons *,
+body:has(bt-event-listing-aspen-main) i.material-icons,
+body:has(bt-event-listing-aspen-main) button.material-icons,
+body:has(bt-event-listing-aspen-main) button.material-icons * {
   font-family: 'Material Icons', 'Material Icons Outlined' !important;
   font-weight: normal !important;
   font-style: normal !important;
@@ -127,7 +121,7 @@ button.material-icons * {
   font-variant-ligatures: discretionary-ligatures !important;
 }
 
-button.clear-icon {
+body:has(bt-event-listing-aspen-main) button.clear-icon {
   color: var(--howdy-muted) !important;
   background: transparent !important;
   border: 0 !important;
@@ -143,64 +137,62 @@ button.clear-icon {
   line-height: 1 !important;
   transition: background .15s ease, color .15s ease;
 }
-button.clear-icon:hover {
+body:has(bt-event-listing-aspen-main) button.clear-icon:hover {
   background: var(--howdy-surface) !important;
   color: var(--howdy-fg) !important;
 }
-button.clear-icon span,
-button.clear-icon .material-icons {
+body:has(bt-event-listing-aspen-main) button.clear-icon span,
+body:has(bt-event-listing-aspen-main) button.clear-icon .material-icons {
   font-size: 20px !important;
   line-height: 1 !important;
 }
 
-/* Language selector — hidden everywhere */
-bt-language-selector,
-.language-selector,
-.language-selector-button {
+/* ============================================================
+   Language selector hidden — listing only
+   ============================================================ */
+body:has(bt-event-listing-aspen-main) bt-language-selector,
+body:has(bt-event-listing-aspen-main) .language-selector,
+body:has(bt-event-listing-aspen-main) .language-selector-button {
   display: none !important;
 }
 
-/* Kill Material purple focus/ripple overlays everywhere */
-.mat-focus-indicator::before,
-.mat-button-focus-overlay,
-.mat-ripple,
-.mat-button-ripple,
-.cdk-focus-trap-anchor {
+/* ============================================================
+   Material focus/ripple suppression — listing only
+   ============================================================ */
+body:has(bt-event-listing-aspen-main) .mat-focus-indicator::before,
+body:has(bt-event-listing-aspen-main) .mat-button-focus-overlay,
+body:has(bt-event-listing-aspen-main) .mat-ripple,
+body:has(bt-event-listing-aspen-main) .mat-button-ripple,
+body:has(bt-event-listing-aspen-main) .cdk-focus-trap-anchor {
   display: none !important;
   background: transparent !important;
   opacity: 0 !important;
 }
-*:focus,
-*:focus-visible,
-button:focus,
-button:focus-visible,
-a:focus,
-a:focus-visible {
+body:has(bt-event-listing-aspen-main) *:focus,
+body:has(bt-event-listing-aspen-main) *:focus-visible,
+body:has(bt-event-listing-aspen-main) button:focus,
+body:has(bt-event-listing-aspen-main) button:focus-visible,
+body:has(bt-event-listing-aspen-main) a:focus,
+body:has(bt-event-listing-aspen-main) a:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
 
 /* ============================================================
-   LISTING-PAGE-ONLY — everything below is scoped to the
-   Aspen group listing wrapper, so it does NOT leak to event
-   detail pages.
+   Page chrome
    ============================================================ */
-
-/* Page chrome */
-bt-event-listing-aspen-main .content-container,
-bt-event-listing-aspen-main .listing-container {
+body:has(bt-event-listing-aspen-main) .content-container,
+body:has(bt-event-listing-aspen-main) .listing-container {
   background: var(--howdy-bg) !important;
 }
-bt-event-listing-aspen-main .main#main {
+body:has(bt-event-listing-aspen-main) .main#main {
   padding: 1.5rem clamp(1rem, 4vw, 2.5rem) !important;
   max-width: 1100px;
   margin: 0 auto;
 }
-
-/* "Upcoming events" section title */
-bt-event-listing-aspen-main .main#main > h2,
-bt-event-listing-aspen-main .main#main > .group-name,
-bt-event-listing-aspen-main .grid-title {
+body:has(bt-event-listing-aspen-main) .main#main > h2,
+body:has(bt-event-listing-aspen-main) .main#main > .group-name,
+body:has(bt-event-listing-aspen-main) .grid-title {
   font-family: var(--howdy-font) !important;
   font-weight: 700 !important;
   font-size: 1.75rem !important;
@@ -209,13 +201,15 @@ bt-event-listing-aspen-main .grid-title {
   color: var(--howdy-fg) !important;
 }
 
-/* Sidebar (filters) */
-bt-event-listing-aspen-main aside.sidebar {
+/* ============================================================
+   Sidebar (filters)
+   ============================================================ */
+body:has(bt-event-listing-aspen-main) aside.sidebar {
   background: var(--howdy-bg) !important;
   border-right: 1px solid var(--howdy-border);
   padding-top: 1.25rem !important;
 }
-bt-event-listing-aspen-main .category-title {
+body:has(bt-event-listing-aspen-main) .category-title {
   font-family: var(--howdy-font) !important;
   font-size: .75rem !important;
   font-weight: 600 !important;
@@ -224,7 +218,7 @@ bt-event-listing-aspen-main .category-title {
   color: var(--howdy-subtle) !important;
   margin-bottom: .5rem !important;
 }
-bt-event-listing-aspen-main .category-item-button {
+body:has(bt-event-listing-aspen-main) .category-item-button {
   font-family: var(--howdy-font) !important;
   font-size: .95rem !important;
   font-weight: 500 !important;
@@ -234,33 +228,35 @@ bt-event-listing-aspen-main .category-item-button {
   background: transparent !important;
   transition: background .15s ease, color .15s ease;
 }
-bt-event-listing-aspen-main .category-item-button:hover {
+body:has(bt-event-listing-aspen-main) .category-item-button:hover {
   background: var(--howdy-surface) !important;
   color: var(--howdy-fg) !important;
 }
-bt-event-listing-aspen-main .category-item.selected .category-item-button,
-bt-event-listing-aspen-main .category-item-button.selected {
+body:has(bt-event-listing-aspen-main) .category-item.selected .category-item-button,
+body:has(bt-event-listing-aspen-main) .category-item-button.selected {
   background: var(--howdy-fg) !important;
   color: var(--howdy-accent-fg) !important;
 }
-bt-event-listing-aspen-main .category-item,
-bt-event-listing-aspen-main .category-item.selected {
+body:has(bt-event-listing-aspen-main) .category-item,
+body:has(bt-event-listing-aspen-main) .category-item.selected {
   border-left: 0 !important;
   border-right: 0 !important;
   box-shadow: none !important;
 }
-bt-event-listing-aspen-main .category-item::before,
-bt-event-listing-aspen-main .category-item::after,
-bt-event-listing-aspen-main .category-item-button::before,
-bt-event-listing-aspen-main .category-item-button::after {
+body:has(bt-event-listing-aspen-main) .category-item::before,
+body:has(bt-event-listing-aspen-main) .category-item::after,
+body:has(bt-event-listing-aspen-main) .category-item-button::before,
+body:has(bt-event-listing-aspen-main) .category-item-button::after {
   display: none !important;
   background: transparent !important;
   border: 0 !important;
 }
 
-/* Grid → vertical list */
-bt-event-listing-aspen-main .grid-container,
-bt-event-listing-aspen-main .grid-renderer {
+/* ============================================================
+   Grid → vertical list
+   ============================================================ */
+body:has(bt-event-listing-aspen-main) .grid-container,
+body:has(bt-event-listing-aspen-main) .grid-renderer {
   display: flex !important;
   flex-direction: column !important;
   gap: var(--howdy-row-gap) !important;
@@ -268,9 +264,7 @@ bt-event-listing-aspen-main .grid-renderer {
   max-width: none !important;
   grid-template-columns: none !important;
 }
-
-/* Each event becomes a horizontal row */
-bt-event-listing-aspen-main a.grid-item {
+body:has(bt-event-listing-aspen-main) a.grid-item {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -289,22 +283,21 @@ bt-event-listing-aspen-main a.grid-item {
   position: relative;
   overflow: hidden;
 }
-bt-event-listing-aspen-main a.grid-item:hover {
+body:has(bt-event-listing-aspen-main) a.grid-item:hover {
   border-color: var(--howdy-fg) !important;
   box-shadow: var(--howdy-shadow-card) !important;
   transform: none !important;
 }
 
-/* Hide the banner thumbnail on listing rows ONLY (event detail keeps its hero banner) */
-bt-event-listing-aspen-main .event-image-wrapper,
-bt-event-listing-aspen-main .event-image-container,
-bt-event-listing-aspen-main bt-responsive-img,
-bt-event-listing-aspen-main .grid-item img.ImgResponsive {
+/* Hide listing-row thumbnails */
+body:has(bt-event-listing-aspen-main) .event-image-wrapper,
+body:has(bt-event-listing-aspen-main) .event-image-container,
+body:has(bt-event-listing-aspen-main) bt-responsive-img,
+body:has(bt-event-listing-aspen-main) .grid-item img.ImgResponsive {
   display: none !important;
 }
 
-/* Event text block — listing rows only */
-bt-event-listing-aspen-main .event-details {
+body:has(bt-event-listing-aspen-main) .event-details {
   display: flex !important;
   flex-direction: column !important;
   gap: .35rem !important;
@@ -312,7 +305,7 @@ bt-event-listing-aspen-main .event-details {
   flex: 1 1 auto;
   min-width: 0;
 }
-bt-event-listing-aspen-main .event-name {
+body:has(bt-event-listing-aspen-main) .event-name {
   font-family: var(--howdy-font) !important;
   font-weight: 600 !important;
   font-size: 1.125rem !important;
@@ -322,12 +315,12 @@ bt-event-listing-aspen-main .event-name {
   margin: 0 !important;
   order: 2;
 }
-bt-event-listing-aspen-main .event-start-date {
+body:has(bt-event-listing-aspen-main) .event-start-date {
   order: 1;
   margin: 0 !important;
 }
-bt-event-listing-aspen-main .event-start-date .start-date,
-bt-event-listing-aspen-main .event-start-date span {
+body:has(bt-event-listing-aspen-main) .event-start-date .start-date,
+body:has(bt-event-listing-aspen-main) .event-start-date span {
   font-family: var(--howdy-font) !important;
   font-size: .8125rem !important;
   font-weight: 500 !important;
@@ -335,20 +328,20 @@ bt-event-listing-aspen-main .event-start-date span {
   letter-spacing: .01em;
   text-transform: uppercase;
 }
-bt-event-listing-aspen-main .event-when-and-where {
+body:has(bt-event-listing-aspen-main) .event-when-and-where {
   order: 3;
   margin: 0 !important;
   font-family: var(--howdy-font) !important;
   font-size: .875rem !important;
   color: var(--howdy-subtle) !important;
 }
-bt-event-listing-aspen-main .event__dateTime,
-bt-event-listing-aspen-main .event__venue {
+body:has(bt-event-listing-aspen-main) .event__dateTime,
+body:has(bt-event-listing-aspen-main) .event__venue {
   font-family: var(--howdy-font) !important;
   font-size: .875rem !important;
   color: var(--howdy-subtle) !important;
 }
-bt-event-listing-aspen-main .event-price {
+body:has(bt-event-listing-aspen-main) .event-price {
   position: static !important;
   display: inline-flex !important;
   align-items: center;
@@ -365,7 +358,7 @@ bt-event-listing-aspen-main .event-price {
 }
 
 /* Register CTA injected on each listing row */
-bt-event-listing-aspen-main a.grid-item::after {
+body:has(bt-event-listing-aspen-main) a.grid-item::after {
   content: 'Register';
   display: inline-flex;
   align-items: center;
@@ -384,14 +377,14 @@ bt-event-listing-aspen-main a.grid-item::after {
   white-space: nowrap;
   transition: background .15s ease, color .15s ease;
 }
-bt-event-listing-aspen-main a.grid-item:hover::after {
+body:has(bt-event-listing-aspen-main) a.grid-item:hover::after {
   background: var(--howdy-bg);
   color: var(--howdy-fg);
 }
 
-/* "Load more" button at the bottom of the listing */
-bt-event-listing-aspen-main .more-content-loader button,
-bt-event-listing-aspen-main .more-content-loader .mat-button {
+/* "Load more" button */
+body:has(bt-event-listing-aspen-main) .more-content-loader button,
+body:has(bt-event-listing-aspen-main) .more-content-loader .mat-button {
   font-family: var(--howdy-font) !important;
   font-weight: 500 !important;
   border-radius: var(--howdy-radius-pill) !important;
@@ -401,35 +394,36 @@ bt-event-listing-aspen-main .more-content-loader .mat-button {
   padding: .6rem 1.5rem !important;
   text-transform: none !important;
 }
-bt-event-listing-aspen-main .more-content-loader button:hover {
+body:has(bt-event-listing-aspen-main) .more-content-loader button:hover {
   background: var(--howdy-fg) !important;
   color: var(--howdy-accent-fg) !important;
 }
 
-/* Mobile: stack listing rows */
+/* ============================================================
+   Mobile (max-width: 640px) — listing only
+   ============================================================ */
 @media (max-width: 640px) {
-  bt-event-listing-aspen-main a.grid-item {
+  body:has(bt-event-listing-aspen-main) a.grid-item {
     flex-direction: column !important;
     align-items: stretch !important;
     padding: 1rem 1.1rem !important;
   }
-  bt-event-listing-aspen-main a.grid-item::after {
+  body:has(bt-event-listing-aspen-main) a.grid-item::after {
     box-sizing: border-box !important;
     margin-left: 0 !important;
     margin-top: .75rem !important;
     width: 100% !important;
     padding: .7rem 1rem !important;
   }
-  bt-event-listing-aspen-main .event-price {
+  body:has(bt-event-listing-aspen-main) .event-price {
     margin-right: 0;
   }
-  /* Header sizing on mobile is global, safe for both pages */
-  .appbar .container {
+  body:has(bt-event-listing-aspen-main) .appbar .container {
     max-width: 100% !important;
     padding: 0 .75rem !important;
     box-sizing: border-box !important;
   }
-  .search-wrapper {
+  body:has(bt-event-listing-aspen-main) .search-wrapper {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
