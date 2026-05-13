@@ -510,17 +510,17 @@ body:has(bt-event-listing-aspen-main) .search-wrapper {
   /* Header: smaller logo, tighter gaps */
   body:has(bt-event-listing-aspen-main) .appbar .container {
     max-width: 100% !important;
-    padding: 0 .75rem !important;
+    padding: 0 .5rem !important;
     gap: .5rem !important;
     box-sizing: border-box !important;
   }
   body:has(bt-event-listing-aspen-main) .appbar .logo {
-    width: 88px !important;
-    height: 30px !important;
+    width: 72px !important;
+    height: 26px !important;
     flex-shrink: 0 !important;
   }
   body:has(bt-event-listing-aspen-main) .header-left {
-    gap: .5rem !important;
+    gap: .25rem !important;
     flex-shrink: 0 !important;
   }
   body:has(bt-event-listing-aspen-main) bt-search-autocomplete {
@@ -530,16 +530,16 @@ body:has(bt-event-listing-aspen-main) .search-wrapper {
   body:has(bt-event-listing-aspen-main) .search-wrapper {
     width: 100% !important;
     max-width: 100% !important;
-    height: 36px !important;
+    height: 34px !important;
     box-sizing: border-box !important;
   }
   body:has(bt-event-listing-aspen-main) .search-field {
-    padding: 0 38px !important;
-    font-size: .875rem !important;
+    padding: 0 8px 0 32px !important;
+    font-size: .8125rem !important;
   }
   body:has(bt-event-listing-aspen-main) .search-wrapper .search-icon {
-    left: 10px !important;
-    font-size: 18px !important;
+    left: 8px !important;
+    font-size: 17px !important;
   }
 
   /* Event rows: stack everything vertically */
