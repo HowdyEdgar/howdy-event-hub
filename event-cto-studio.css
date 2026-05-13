@@ -111,6 +111,20 @@ body.dynamic-event-bg .event-name {
   letter-spacing: -0.005em !important;
   color: var(--cto-fg) !important;
   margin: 0 0 1.25rem 0 !important;
+  text-wrap: balance;
+  text-wrap: pretty;
+}
+/* Pretty wrap for other long text too */
+body.dynamic-event-bg h2,
+body.dynamic-event-bg h3,
+body.dynamic-event-bg .event-when-and-where,
+body.dynamic-event-bg .event-location-name {
+  text-wrap: balance;
+}
+body.dynamic-event-bg .event-description,
+body.dynamic-event-bg .description,
+body.dynamic-event-bg .event-details p {
+  text-wrap: pretty;
 }
 body.dynamic-event-bg .event-when-and-where,
 body.dynamic-event-bg .event__dateTime,
@@ -310,12 +324,14 @@ body.dynamic-event-bg a.link-btn {
 }
 
 /* ============================================================
-   Map / venue card — purge ALL lavender remnants
+   Map / venue card
    ============================================================ */
 body.dynamic-event-bg bt-master-event-ui-venue,
-body.dynamic-event-bg .venue-section {
+body.dynamic-event-bg .venue-section,
+body.dynamic-event-bg .section.venue {
   background: var(--cto-bg) !important;
   color: var(--cto-fg) !important;
+  padding: 1rem clamp(1rem, 4vw, 2rem) 2.5rem !important;
 }
 /* Constrain the giant map */
 body.dynamic-event-bg .event-location-map,
@@ -324,20 +340,56 @@ body.dynamic-event-bg .location-static-map {
   height: 360px !important;
   object-fit: cover !important;
   border-radius: var(--cto-radius-lg) !important;
+  margin: 0 0 1.25rem 0 !important;
 }
-body.dynamic-event-bg .venue-info,
-body.dynamic-event-bg .venue-address,
-body.dynamic-event-bg .venue-name {
-  color: var(--cto-fg-muted) !important;
-  font-family: var(--cto-sans) !important;
-}
-/* "To Be Announced" info card */
-body.dynamic-event-bg .venue-card,
-body.dynamic-event-bg [class*="venue-overlay"],
-body.dynamic-event-bg [class*="map-overlay"] {
+
+/* "To Be Announced" location card */
+body.dynamic-event-bg .event-location,
+body.dynamic-event-bg .event-location.transform {
   background: var(--cto-bg-elev) !important;
   color: var(--cto-fg) !important;
   border: 1px solid var(--cto-border) !important;
+  border-radius: var(--cto-radius-lg) !important;
+  padding: 1.5rem clamp(1.25rem, 3vw, 1.75rem) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  flex-wrap: wrap;
+  transform: none !important;
+}
+body.dynamic-event-bg .event-location-details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: .35rem !important;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+body.dynamic-event-bg .event-location-name,
+body.dynamic-event-bg h3.event-location-name {
+  font-family: var(--cto-serif) !important;
+  font-weight: 500 !important;
+  font-size: 1.5rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.005em !important;
+  color: var(--cto-fg) !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+body.dynamic-event-bg .event-location-address {
+  font-family: var(--cto-sans) !important;
+  font-size: .9375rem !important;
+  color: var(--cto-fg-muted) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .5rem !important;
+}
+body.dynamic-event-bg .event-location .actions {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 1.25rem !important;
+  flex-shrink: 0 !important;
 }
 
 /* Map pin / location marker — orange instead of lavender */
@@ -403,12 +455,23 @@ body.dynamic-event-bg *:focus-visible {
 @media (max-width: 640px) {
   body.dynamic-event-bg h1.event-name,
   body.dynamic-event-bg .event-name {
-    font-size: 2.125rem !important;
+    font-size: 2rem !important;
     line-height: 1.1 !important;
+    padding: 0 .5rem;
   }
   body.dynamic-event-bg h2,
-  body.dynamic-event-bg .section-title {
-    font-size: 1.625rem !important;
+  body.dynamic-event-bg .section-title,
+  body.dynamic-event-bg bt-master-event-ui-venue h2,
+  body.dynamic-event-bg bt-master-event-ui-venue .title {
+    font-size: 1.5rem !important;
+    margin: 1rem 0 1rem !important;
+  }
+  body.dynamic-event-bg .event-when-and-where,
+  body.dynamic-event-bg .event__dateTime,
+  body.dynamic-event-bg .event__venue,
+  body.dynamic-event-bg .event-date,
+  body.dynamic-event-bg .event-time {
+    font-size: .9375rem !important;
   }
   body.dynamic-event-bg .event-description,
   body.dynamic-event-bg .description,
@@ -424,7 +487,60 @@ body.dynamic-event-bg *:focus-visible {
   }
   body.dynamic-event-bg .event-location-map,
   body.dynamic-event-bg .location-static-map {
-    max-height: 240px !important;
-    height: 240px !important;
+    max-height: 220px !important;
+    height: 220px !important;
+    border-radius: var(--cto-radius-md) !important;
+  }
+  /* Venue section: tighten padding so card breathes evenly */
+  body.dynamic-event-bg bt-master-event-ui-venue,
+  body.dynamic-event-bg .section.venue {
+    padding: .5rem 1rem 2rem !important;
+  }
+  /* Stack the "To Be Announced" card vertically on mobile */
+  body.dynamic-event-bg .event-location,
+  body.dynamic-event-bg .event-location.transform {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+    padding: 1.25rem !important;
+    text-align: center;
+  }
+  body.dynamic-event-bg .event-location-name,
+  body.dynamic-event-bg h3.event-location-name {
+    text-align: center !important;
+    font-size: 1.375rem !important;
+  }
+  body.dynamic-event-bg .event-location-address {
+    justify-content: center !important;
+    font-size: .9375rem !important;
+  }
+  body.dynamic-event-bg .event-location .actions {
+    flex-direction: column !important;
+    gap: .75rem !important;
+    width: 100% !important;
+  }
+  body.dynamic-event-bg .direction-btn {
+    width: 100% !important;
+  }
+  body.dynamic-event-bg .link-btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  /* Tighter form spacing on mobile */
+  body.dynamic-event-bg .input-box {
+    padding: .65rem .85rem !important;
+  }
+  body.dynamic-event-bg .input-field {
+    margin-bottom: 1rem !important;
+  }
+  /* Page padding */
+  body.dynamic-event-bg .event-details,
+  body.dynamic-event-bg .event-details-container {
+    padding: 1.25rem 1rem !important;
+  }
+  body.dynamic-event-bg .event-description,
+  body.dynamic-event-bg .description,
+  body.dynamic-event-bg .event-details p {
+    max-width: 100%;
   }
 }
