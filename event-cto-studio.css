@@ -198,6 +198,19 @@ body.dynamic-event-bg legend {
   text-transform: none !important;
   margin-bottom: .375rem !important;
 }
+/* Style the input-box wrapper directly (Blackthorn's actual visible container)
+   This is more robust than styling <input> — Blackthorn's input bgs vary by field */
+body.dynamic-event-bg .input-box,
+body.dynamic-event-bg .input-field .input-box {
+  background: var(--cto-cream) !important;
+  border: 1px solid var(--cto-cream) !important;
+  border-radius: var(--cto-radius-md) !important;
+  padding: .75rem 1rem !important;
+  box-shadow: none !important;
+}
+body.dynamic-event-bg .input-box input,
+body.dynamic-event-bg .input-box textarea,
+body.dynamic-event-bg .input-box .mat-input-element,
 body.dynamic-event-bg input[type="text"],
 body.dynamic-event-bg input[type="email"],
 body.dynamic-event-bg input[type="tel"],
@@ -206,25 +219,33 @@ body.dynamic-event-bg input[type="search"],
 body.dynamic-event-bg input[type="password"],
 body.dynamic-event-bg textarea,
 body.dynamic-event-bg select {
-  background: var(--cto-cream) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   color: var(--cto-cream-fg) !important;
-  border: 1px solid var(--cto-cream) !important;
-  border-radius: var(--cto-radius-md) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   font-family: var(--cto-sans) !important;
   font-size: 1rem !important;
-  padding: .75rem 1rem !important;
+  padding: 0 !important;
   box-shadow: none !important;
+  caret-color: var(--cto-cream-fg) !important;
 }
+body.dynamic-event-bg .input-box input::placeholder,
 body.dynamic-event-bg input::placeholder,
 body.dynamic-event-bg textarea::placeholder {
   color: rgba(49, 30, 26, 0.4) !important;
 }
-body.dynamic-event-bg input:focus,
-body.dynamic-event-bg textarea:focus,
-body.dynamic-event-bg select:focus {
+body.dynamic-event-bg .input-box:focus-within {
   border-color: var(--cto-accent) !important;
-  outline: none !important;
   box-shadow: 0 0 0 3px rgba(226, 109, 81, .25) !important;
+}
+/* Chrome autofill yellow override — keep fields cream */
+body.dynamic-event-bg input:-webkit-autofill,
+body.dynamic-event-bg input:-webkit-autofill:hover,
+body.dynamic-event-bg input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px var(--cto-cream) inset !important;
+  -webkit-text-fill-color: var(--cto-cream-fg) !important;
+  caret-color: var(--cto-cream-fg) !important;
 }
 
 /* ============================================================
