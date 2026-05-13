@@ -56,7 +56,9 @@ body.dynamic-event-bg nav.mobile-menu,
 body.dynamic-event-bg .mobile-menu,
 body.dynamic-event-bg .back-button,
 body.dynamic-event-bg button.back-button,
-body.dynamic-event-bg [class*="floating-nav"] {
+body.dynamic-event-bg [class*="floating-nav"],
+body.dynamic-event-bg .navbar-nav,
+body.dynamic-event-bg .nav-item {
   display: none !important;
 }
 
