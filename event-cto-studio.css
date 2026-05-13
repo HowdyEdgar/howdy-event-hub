@@ -1,0 +1,312 @@
+/* ============================================================
+   CTO Studio — Blackthorn Event Detail CSS
+   Event: CTO Studio Wrap Party (Volume 001)
+   Brand: dark brown bg, cream text, orange accents, editorial serif
+   Scope: applied only to this event via Blackthorn's per-event
+          Custom CSS field. Belt-and-suspenders selector below
+          scopes again to the event detail page wrapper.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --cto-bg: #311E1A;
+  --cto-bg-elev: #3d2823;
+  --cto-surface: #432e29;
+  --cto-fg: #F9F7EA;
+  --cto-fg-muted: #d7cfb8;
+  --cto-fg-subtle: #9c9282;
+  --cto-border: #4a342f;
+  --cto-border-strong: #5a423c;
+  --cto-accent: #E26D51;
+  --cto-accent-hover: #E26D51;
+  --cto-accent-fg: #1a0f0c;
+  --cto-cream: #F9F7EA;
+  --cto-cream-fg: #311E1A;
+  --cto-green: #23322F;
+  --cto-radius-md: .5rem;
+  --cto-radius-lg: 1rem;
+  --cto-radius-pill: 9999px;
+  --cto-serif: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --cto-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================================
+   Base — event detail pages only
+   ============================================================ */
+body.dynamic-event-bg,
+body:has(bt-master-event-ui-overview),
+body:has(bt-master-event-ui-preview-header) {
+  background: var(--cto-bg) !important;
+  color: var(--cto-fg) !important;
+  font-family: var(--cto-sans) !important;
+}
+body.dynamic-event-bg main,
+body.dynamic-event-bg .content-container,
+body.dynamic-event-bg .linear-background {
+  background: var(--cto-bg) !important;
+}
+/* Kill the linear-background gradient overlay that Blackthorn injects */
+body.dynamic-event-bg .linear-background {
+  background: linear-gradient(180deg, transparent 0%, var(--cto-bg) 100%) !important;
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   Header / appbar
+   ============================================================ */
+body.dynamic-event-bg header.appbar,
+body.dynamic-event-bg .appbar {
+  background: var(--cto-bg) !important;
+  border-bottom: 1px solid var(--cto-border) !important;
+  box-shadow: none !important;
+}
+body.dynamic-event-bg .appbar a,
+body.dynamic-event-bg .appbar button {
+  color: var(--cto-fg) !important;
+}
+/* Hide language selector */
+body.dynamic-event-bg bt-language-selector,
+body.dynamic-event-bg .language-selector,
+body.dynamic-event-bg .language-selector-button {
+  display: none !important;
+}
+
+/* ============================================================
+   Banner area (already on-brand — just frame it)
+   ============================================================ */
+body.dynamic-event-bg .banner-image {
+  background: var(--cto-bg) !important;
+  border-bottom: 0 !important;
+}
+body.dynamic-event-bg .banner-image img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* ============================================================
+   Event details (title, date, description)
+   ============================================================ */
+body.dynamic-event-bg .event-details,
+body.dynamic-event-bg .event-details-container {
+  background: var(--cto-bg) !important;
+  color: var(--cto-fg) !important;
+}
+body.dynamic-event-bg h1.event-name,
+body.dynamic-event-bg .event-name {
+  font-family: var(--cto-serif) !important;
+  font-weight: 500 !important;
+  font-size: clamp(2rem, 4.5vw, 3.25rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--cto-fg) !important;
+  margin: 0 0 1rem 0 !important;
+}
+body.dynamic-event-bg .event-when-and-where,
+body.dynamic-event-bg .event__dateTime,
+body.dynamic-event-bg .event__venue,
+body.dynamic-event-bg .event-date,
+body.dynamic-event-bg .event-time,
+body.dynamic-event-bg .event-location {
+  font-family: var(--cto-sans) !important;
+  color: var(--cto-fg-muted) !important;
+  font-size: .95rem !important;
+}
+body.dynamic-event-bg .event-description,
+body.dynamic-event-bg .description,
+body.dynamic-event-bg .rich-text,
+body.dynamic-event-bg .event-details p {
+  font-family: var(--cto-sans) !important;
+  color: var(--cto-fg-muted) !important;
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  max-width: 60ch;
+}
+body.dynamic-event-bg .event-description a,
+body.dynamic-event-bg .description a {
+  color: var(--cto-accent) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* ============================================================
+   Section headings (Venue, Agenda, etc.)
+   ============================================================ */
+body.dynamic-event-bg h2,
+body.dynamic-event-bg h3,
+body.dynamic-event-bg .section-title,
+body.dynamic-event-bg .venue-title,
+body.dynamic-event-bg .agenda-title {
+  font-family: var(--cto-serif) !important;
+  font-weight: 500 !important;
+  font-size: 1.75rem !important;
+  letter-spacing: -0.005em !important;
+  color: var(--cto-fg) !important;
+}
+
+/* ============================================================
+   Registration form
+   ============================================================ */
+body.dynamic-event-bg bt-master-event-ui-attendee-registration-form,
+body.dynamic-event-bg .registration-form,
+body.dynamic-event-bg form {
+  color: var(--cto-fg) !important;
+}
+body.dynamic-event-bg label,
+body.dynamic-event-bg .form-label,
+body.dynamic-event-bg legend {
+  font-family: var(--cto-sans) !important;
+  font-size: .8125rem !important;
+  font-weight: 500 !important;
+  color: var(--cto-fg-muted) !important;
+  letter-spacing: 0;
+  text-transform: none !important;
+}
+body.dynamic-event-bg input[type="text"],
+body.dynamic-event-bg input[type="email"],
+body.dynamic-event-bg input[type="tel"],
+body.dynamic-event-bg input[type="url"],
+body.dynamic-event-bg input[type="search"],
+body.dynamic-event-bg textarea,
+body.dynamic-event-bg select,
+body.dynamic-event-bg .mat-form-field-wrapper,
+body.dynamic-event-bg .mat-form-field-flex {
+  background: var(--cto-bg-elev) !important;
+  color: var(--cto-fg) !important;
+  border: 1px solid var(--cto-border) !important;
+  border-radius: var(--cto-radius-md) !important;
+  font-family: var(--cto-sans) !important;
+  font-size: .95rem !important;
+}
+body.dynamic-event-bg input::placeholder,
+body.dynamic-event-bg textarea::placeholder {
+  color: var(--cto-fg-subtle) !important;
+}
+body.dynamic-event-bg input:focus,
+body.dynamic-event-bg textarea:focus,
+body.dynamic-event-bg select:focus {
+  border-color: var(--cto-accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(226, 109, 81, .15) !important;
+}
+
+/* Submit / Register CTA — orange pill */
+body.dynamic-event-bg button[type="submit"],
+body.dynamic-event-bg .submit-button,
+body.dynamic-event-bg .register-button,
+body.dynamic-event-bg .request-button,
+body.dynamic-event-bg .mat-raised-button.mat-primary,
+body.dynamic-event-bg a.register,
+body.dynamic-event-bg .cta-primary {
+  background: var(--cto-accent) !important;
+  color: var(--cto-cream) !important;
+  font-family: var(--cto-sans) !important;
+  font-weight: 600 !important;
+  font-size: .875rem !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase !important;
+  border: 0 !important;
+  border-radius: var(--cto-radius-pill) !important;
+  padding: .75rem 1.75rem !important;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+/* No hover state changes — match Howdy CSS preference */
+body.dynamic-event-bg button[type="submit"]:hover,
+body.dynamic-event-bg button[type="submit"]:focus,
+body.dynamic-event-bg button[type="submit"]:active,
+body.dynamic-event-bg .submit-button:hover,
+body.dynamic-event-bg .submit-button:focus,
+body.dynamic-event-bg .submit-button:active,
+body.dynamic-event-bg .mat-raised-button.mat-primary:hover,
+body.dynamic-event-bg .mat-raised-button.mat-primary:focus {
+  background: var(--cto-accent) !important;
+  color: var(--cto-cream) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Secondary buttons (outline) */
+body.dynamic-event-bg .mat-button,
+body.dynamic-event-bg .secondary-button,
+body.dynamic-event-bg .button-secondary {
+  background: transparent !important;
+  color: var(--cto-cream) !important;
+  border: 1px solid var(--cto-cream) !important;
+  border-radius: var(--cto-radius-pill) !important;
+  font-family: var(--cto-sans) !important;
+  font-weight: 500 !important;
+  padding: .65rem 1.5rem !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   Venue / Map section
+   ============================================================ */
+body.dynamic-event-bg bt-master-event-ui-venue,
+body.dynamic-event-bg .venue-section {
+  background: var(--cto-bg) !important;
+  color: var(--cto-fg) !important;
+}
+body.dynamic-event-bg .venue-section h2,
+body.dynamic-event-bg .venue-title {
+  font-family: var(--cto-serif) !important;
+  color: var(--cto-fg) !important;
+}
+body.dynamic-event-bg .venue-info,
+body.dynamic-event-bg .venue-address {
+  color: var(--cto-fg-muted) !important;
+}
+/* "View Larger Map" link */
+body.dynamic-event-bg .venue-section a,
+body.dynamic-event-bg .map-link {
+  color: var(--cto-accent) !important;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+body.dynamic-event-bg bt-master-event-ui-preview-footer,
+body.dynamic-event-bg footer,
+body.dynamic-event-bg .footer {
+  background: var(--cto-bg) !important;
+  color: var(--cto-fg-subtle) !important;
+  border-top: 1px solid var(--cto-border) !important;
+}
+body.dynamic-event-bg footer a {
+  color: var(--cto-fg-muted) !important;
+}
+
+/* ============================================================
+   Material focus/ripple suppression — keep things calm
+   ============================================================ */
+body.dynamic-event-bg .mat-focus-indicator::before,
+body.dynamic-event-bg .mat-button-focus-overlay,
+body.dynamic-event-bg .mat-ripple,
+body.dynamic-event-bg .mat-button-ripple {
+  display: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+/* ============================================================
+   Mobile (max-width: 640px)
+   ============================================================ */
+@media (max-width: 640px) {
+  body.dynamic-event-bg h1.event-name,
+  body.dynamic-event-bg .event-name {
+    font-size: 2rem !important;
+    line-height: 1.1 !important;
+  }
+  body.dynamic-event-bg h2,
+  body.dynamic-event-bg .section-title {
+    font-size: 1.375rem !important;
+  }
+  body.dynamic-event-bg button[type="submit"],
+  body.dynamic-event-bg .submit-button {
+    width: 100% !important;
+    padding: .85rem 1.25rem !important;
+  }
+}
