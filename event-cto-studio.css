@@ -177,7 +177,7 @@ body.dynamic-event-bg bt-master-event-ui-venue .title {
 }
 
 /* ============================================================
-   DIVIDERS — cream, not lavender
+   DIVIDERS — cream, with breathing room
    ============================================================ */
 body.dynamic-event-bg .divider,
 body.dynamic-event-bg .divider.primary,
@@ -191,6 +191,19 @@ body.dynamic-event-bg .dot,
 body.dynamic-event-bg .divider .dot {
   background: var(--cto-cream) !important;
   border-color: var(--cto-cream) !important;
+}
+/* Container that holds [.divider .dot .divider] — give it vertical breathing room */
+body.dynamic-event-bg .section-divider,
+body.dynamic-event-bg .divider-wrapper,
+body.dynamic-event-bg .divider-container,
+body.dynamic-event-bg .divider.primary {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+/* Parent of the dotted divider — covers all naming patterns */
+body.dynamic-event-bg .divider.primary,
+body.dynamic-event-bg div:has(> .dot) {
+  margin: 3rem 0 !important;
 }
 
 /* ============================================================
@@ -290,6 +303,15 @@ body.dynamic-event-bg .direction-btn {
   padding: .8rem 1.75rem !important;
   cursor: pointer !important;
   box-shadow: none !important;
+  margin: 0 auto !important;
+}
+/* Center the submit button's parent container so the button sits in the middle */
+body.dynamic-event-bg .action,
+body.dynamic-event-bg form .actions {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 1.5rem 0 !important;
+  text-align: center !important;
 }
 
 body.dynamic-event-bg button[type="submit"]:hover,
