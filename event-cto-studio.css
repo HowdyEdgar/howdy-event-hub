@@ -130,11 +130,10 @@ body.dynamic-event-bg .event-when-and-where,
 body.dynamic-event-bg .event__dateTime,
 body.dynamic-event-bg .event__venue,
 body.dynamic-event-bg .event-date,
-body.dynamic-event-bg .event-time,
-body.dynamic-event-bg .event-location {
+body.dynamic-event-bg .event-time {
   font-family: var(--cto-sans) !important;
   color: var(--cto-fg-muted) !important;
-  font-size: 1.0625rem !important;
+  font-size: 1.1875rem !important;
   line-height: 1.5 !important;
 }
 body.dynamic-event-bg .event-description,
@@ -144,8 +143,8 @@ body.dynamic-event-bg .event-details p,
 body.dynamic-event-bg .event-details li {
   font-family: var(--cto-sans) !important;
   color: var(--cto-fg-muted) !important;
-  font-size: 1.0625rem !important;
-  line-height: 1.7 !important;
+  font-size: 1.1875rem !important;
+  line-height: 1.75 !important;
   max-width: 62ch;
 }
 body.dynamic-event-bg .event-description a,
@@ -493,13 +492,13 @@ body.dynamic-event-bg *:focus-visible {
   body.dynamic-event-bg .event__venue,
   body.dynamic-event-bg .event-date,
   body.dynamic-event-bg .event-time {
-    font-size: .9375rem !important;
+    font-size: 1.0625rem !important;
   }
   body.dynamic-event-bg .event-description,
   body.dynamic-event-bg .description,
   body.dynamic-event-bg .event-details p {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
+    font-size: 1.0625rem !important;
+    line-height: 1.65 !important;
   }
   body.dynamic-event-bg button[type="submit"],
   body.dynamic-event-bg .mat-raised-button,
