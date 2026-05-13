@@ -1,44 +1,18 @@
-# Howdy.com Event Hub — Blackthorn Custom CSS
+# ⚠️ Moved — see austin-software/blackthorn-event-css
 
-Custom stylesheet that converts the Blackthorn Aspen event group listing into a clean text list with pill CTAs, matching the [howdy.com](https://www.howdy.com/) brand (Inter typography, black pill buttons, minimal palette).
+This repo (`HowdyEdgar/howdy-event-hub`) was the personal-account prototype where the Howdy.com Events CSS was first built. It's been migrated to the team org and is now kept here only as a personal backup snapshot.
 
-## Live URL for Blackthorn
+**Canonical location:** https://github.com/austin-software/blackthorn-event-css
 
-Paste this into the **Custom CSS Url** field on the Event Group record in Salesforce:
+Everything — both stylesheets, the live URLs Blackthorn loads, the full editing/deploy workflow, troubleshooting — lives in that repo's README.
 
-```
-https://cdn.jsdelivr.net/gh/HowdyEdgar/howdy-event-hub/howdy-event-hub.css
-```
+The CSS files in this directory may be out of date. Do not edit them here.
 
-jsDelivr serves the file with `Content-Type: text/css` and caches at the CDN edge. Edits pushed to `main` propagate in ~10 seconds. If a change doesn't show up, append `?v=2` (or any number) to bust the cache.
+## Live URLs (for reference)
 
-## Editing
+- Howdy listing: `https://austin-software.github.io/blackthorn-event-css/howdy-event-hub.css`
+- CTO Studio event: `https://austin-software.github.io/blackthorn-event-css/event-cto-studio.css`
 
-1. Edit `howdy-event-hub.css` locally or directly in the GitHub web UI.
-2. Commit and push to `main`.
-3. Reload the Blackthorn hub page (hard refresh with Cmd+Shift+R).
+## Local-only artifacts
 
-## What it does
-
-- Converts the multi-column Aspen grid into a vertical list of event rows.
-- Hides event banner thumbnails (text-only rows).
-- Adds a black pill "Register" CTA on each row.
-- Restyles the search bar, sidebar filters, and "Load more" button to match Howdy's pill aesthetic.
-- Hides the language selector.
-- Mobile-responsive (single-column stack with full-width CTA below ~640px).
-
-## Quick tweaks
-
-Most visual changes can be made by editing the CSS custom properties at the top of `howdy-event-hub.css`:
-
-| To change... | Edit the variable |
-| --- | --- |
-| Accent / CTA color | `--howdy-accent` (and `--howdy-accent-fg`) |
-| Background | `--howdy-bg` |
-| Text color | `--howdy-fg` / `--howdy-muted` / `--howdy-subtle` |
-| Card border | `--howdy-border` |
-| Card corner radius | `--howdy-radius-md` |
-| Gap between rows | `--howdy-row-gap` |
-| Font family | `--howdy-font` |
-
-The "Register" button label is hard-coded in `a.grid-item::after { content: 'Register' }` — search for that line to change the wording.
+This directory still holds the local preview tooling (`serve.py`, `preview.html`, `bookmarklet*.txt`) for quick iteration with bookmarklets before pushing to the team repo. See the canonical README's "Local development" section.
